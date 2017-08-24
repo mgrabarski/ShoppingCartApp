@@ -1,13 +1,13 @@
 package grabarski.shoppingcartapp.data.model;
 
 /**
- * Created by Mateusz Grabarski on 23/08/2017.
+ * Created by Mateusz Grabarski on 24.08.17.
  */
 
-public class Customers {
+public class Retailer {
 
     private long id;
-    private String customerName;
+    private String businessName;
     private String emailAddress;
     private String phoneNumber;
     private String profileImagePath;
@@ -20,20 +20,7 @@ public class Customers {
     private long dateAdded;
     private long dateOfLastTransaction;
 
-    public Customers() {
-        id = 0;
-        customerName = "";
-        emailAddress = "";
-        phoneNumber = "";
-        profileImagePath = "empty";
-        streetAddress = "";
-        streetAddress2 = "";
-        city = "";
-        state = "";
-        postalCode = "";
-        note = "";
-        dateAdded = 0L;
-        dateOfLastTransaction = 0L;
+    public Retailer() {
     }
 
     public long getId() {
@@ -44,12 +31,12 @@ public class Customers {
         this.id = id;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getBusinessName() {
+        return businessName;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 
     public String getEmailAddress() {

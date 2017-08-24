@@ -6,5 +6,17 @@ package grabarski.shoppingcartapp.data.model;
 
 public class LineItem extends Product {
 
-    private Product quantity;
+    private int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getSumPrice() {
+        return getSalePrice() * quantity;
+    }
 }
