@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">ShoppingCartApp</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_data">No data</string>
+    <string name="label_sub_total">Sub total:</string>
+    <string name="label_tax">Tax:</string>
+    <string name="label_total">Total:</string>
+    <string name="payment_type_cash">Cash</string>
+    <string name="payment_type_card">Card</string>
+    <string name="payment_type_paypal">PayPal</string>
+    <string name="clear">Clear</string>
+    <string name="checkout">Checkout</string>
+    <string name="label_zero_dollar">0.0$</string>
 </resources>
