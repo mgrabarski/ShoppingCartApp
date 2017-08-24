@@ -18,6 +18,23 @@ public class Product {
     private long dateAdded;
     private long dateOfLastTransaction;
 
+    public Product() {
+    }
+
+    public Product(Product product) {
+        this.id = product.getId();
+        this.productName = product.getProductName();
+        this.productDescription = product.getProductDescription();
+        this.promoMessage = product.getPromoMessage();
+        this.salePrice = product.getSalePrice();
+        this.purchasePrice = product.getPurchasePrice();
+        this.imagePath = product.getImagePath();
+        this.categoryId = product.getCategoryId();
+        this.categoryName = product.getCategoryName();
+        this.dateAdded = product.getDateAdded();
+        this.dateOfLastTransaction = product.getDateOfLastTransaction();
+    }
+
     public long getId() {
         return id;
     }
