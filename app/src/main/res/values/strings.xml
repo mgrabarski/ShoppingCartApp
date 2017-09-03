@@ -12,4 +12,8 @@
     <string name="clear">Clear</string>
     <string name="checkout">Checkout</string>
     <string name="label_zero_dollar">0.0$</string>
+    <string name="category">Category</string>
+    <string name="product_name">Product name</string>
+    <string name="number">Number</string>
+    <string name="delete">Delete</string>
 </resources>
