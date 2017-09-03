@@ -4,7 +4,7 @@ package grabarski.shoppingcartapp.data.model;
  * Created by Mateusz Grabarski on 23/08/2017.
  */
 
-public class Customers {
+public class Customer {
 
     private long id;
     private String customerName;
@@ -20,7 +20,7 @@ public class Customers {
     private long dateAdded;
     private long dateOfLastTransaction;
 
-    public Customers() {
+    public Customer() {
         id = 0;
         customerName = "";
         emailAddress = "";
