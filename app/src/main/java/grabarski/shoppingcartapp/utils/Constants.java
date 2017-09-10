@@ -5,4 +5,7 @@ package grabarski.shoppingcartapp.utils;
  */
 
 public class Constants {
+    public static final String SERIALIZED_CART_ITEMS = "selectedItems";
+    public static final String SERIALIZED_SELECTED_CUSTOMER = "selectedCustomer";
+    public static final String OPEN_CART_EXISTS = "openCartExist";
 }
