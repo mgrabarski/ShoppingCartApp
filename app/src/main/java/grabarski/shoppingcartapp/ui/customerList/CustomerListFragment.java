@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +30,8 @@ import grabarski.shoppingcartapp.ui.listeners.OnCustomerSelectedListener;
  * Use the {@link CustomerListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CustomerListFragment extends Fragment implements OnCustomerSelectedListener {
+public class CustomerListFragment extends Fragment implements
+        OnCustomerSelectedListener, CustomerListContract.View {
 
     @BindView(R.id.fragment_customer_list_rv)
     RecyclerView customerListRv;
@@ -42,8 +44,10 @@ public class CustomerListFragment extends Fragment implements OnCustomerSelected
 
     Unbinder unbinder;
 
+    private CustomerPresenter customerPresenter;
     private OnFragmentInteractionListener mListener;
     private CustomersListAdapter adapter;
+    private ArrayList<Customer> customers;
 
     public CustomerListFragment() {
 
@@ -68,17 +72,13 @@ public class CustomerListFragment extends Fragment implements OnCustomerSelected
 
         unbinder = ButterKnife.bind(this, view);
 
-        ArrayList<Customer> customers = new ArrayList<>();
+        customers = new ArrayList<>();
+        customerPresenter = new CustomerPresenter(this);
 
         adapter = new CustomersListAdapter(customers, getContext(), this);
 
         customerListRv.setLayoutManager(new LinearLayoutManager(getContext()));
         customerListRv.setAdapter(adapter);
-
-        if (customers.size() < 1)
-            showEmptyTextMessage();
-        else
-            hideEmptyTextMessage();
 
         return view;
     }
@@ -95,6 +95,12 @@ public class CustomerListFragment extends Fragment implements OnCustomerSelected
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        customerPresenter.loadCustomer();
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
@@ -106,16 +112,6 @@ public class CustomerListFragment extends Fragment implements OnCustomerSelected
         unbinder.unbind();
     }
 
-    private void showEmptyTextMessage() {
-        noDataTv.setVisibility(View.VISIBLE);
-        customerListRv.setVisibility(View.GONE);
-    }
-
-    private void hideEmptyTextMessage() {
-        noDataTv.setVisibility(View.GONE);
-        customerListRv.setVisibility(View.VISIBLE);
-    }
-
     @Override
     public void onCustomerSelected(Customer customer) {
 
@@ -123,6 +119,45 @@ public class CustomerListFragment extends Fragment implements OnCustomerSelected
 
     @Override
     public void onLongClickCustomer(Customer customer) {
+
+    }
+
+    @Override
+    public void showCustomers(List<Customer> customers) {
+        this.customers.clear();
+        this.customers.addAll(customers);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showAddCustomerForm() {
+
+    }
+
+    @Override
+    public void showDeleteCustomerPrompt(Customer customer) {
+
+    }
+
+    @Override
+    public void showEditCustomerForm(Customer customer) {
+
+    }
+
+    @Override
+    public void showEmptyText() {
+        noDataTv.setVisibility(View.VISIBLE);
+        customerListRv.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideEmptyText() {
+        noDataTv.setVisibility(View.GONE);
+        customerListRv.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showMessage(String message) {
 
     }
 

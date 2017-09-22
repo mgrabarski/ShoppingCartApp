@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +31,8 @@ import grabarski.shoppingcartapp.ui.productList.adapter.ProductListAdapter;
  * Use the {@link ProductListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProductListFragment extends Fragment implements OnProductSelectedListener {
+public class ProductListFragment extends Fragment implements
+        OnProductSelectedListener, ProductListContract.View {
 
     @BindView(R.id.fragment_product_list_rv)
     RecyclerView productListRv;
@@ -42,8 +45,10 @@ public class ProductListFragment extends Fragment implements OnProductSelectedLi
 
     Unbinder unbinder;
 
+    private ProductPresenter productPresenter;
     private OnFragmentInteractionListener mListener;
     private ProductListAdapter adapter;
+    private ArrayList<Product> products;
 
     public ProductListFragment() {
 
@@ -67,18 +72,13 @@ public class ProductListFragment extends Fragment implements OnProductSelectedLi
         View view = inflater.inflate(R.layout.fragment_product_list, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        ArrayList<Product> products = new ArrayList<>();
+        products = new ArrayList<>();
+        productPresenter = new ProductPresenter(this);
 
         adapter = new ProductListAdapter(products, getContext(), this);
 
         productListRv.setLayoutManager(new LinearLayoutManager(getContext()));
         productListRv.setAdapter(adapter);
-
-        if (products.size() < 1) {
-            showEmptyTextMessage();
-        } else {
-            hideEmptyTextMessage();
-        }
 
         return view;
     }
@@ -92,6 +92,13 @@ public class ProductListFragment extends Fragment implements OnProductSelectedLi
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        productPresenter.loadProducts();
     }
 
     @Override
@@ -116,14 +123,48 @@ public class ProductListFragment extends Fragment implements OnProductSelectedLi
 
     }
 
-    private void showEmptyTextMessage() {
+    @Override
+    public void showProducts(List<Product> products) {
+        this.products.clear();
+        this.products.addAll(products);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showAddProductForm() {
+
+    }
+
+    @Override
+    public void showEditProductFrom(Product product) {
+
+    }
+
+    @Override
+    public void showDeletedProductPrompt(Product product) {
+
+    }
+
+    @Override
+    public void showGoogleSearch(Product product) {
+
+    }
+
+    @Override
+    public void showEmptyTest() {
         productListRv.setVisibility(View.GONE);
         noDataTv.setVisibility(View.VISIBLE);
     }
 
-    private void hideEmptyTextMessage() {
+    @Override
+    public void hideEmptyTest() {
         productListRv.setVisibility(View.VISIBLE);
         noDataTv.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
     public interface OnFragmentInteractionListener {

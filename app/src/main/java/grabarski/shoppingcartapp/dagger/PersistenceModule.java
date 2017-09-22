@@ -10,6 +10,8 @@ import grabarski.shoppingcartapp.ui.customerList.CustomerInMemoryRepository;
 import grabarski.shoppingcartapp.ui.customerList.CustomerListContract;
 import grabarski.shoppingcartapp.ui.productList.ProductInMemoryRepository;
 import grabarski.shoppingcartapp.ui.productList.ProductListContract;
+import grabarski.shoppingcartapp.ui.transaction.TempRepo;
+import grabarski.shoppingcartapp.ui.transaction.TransactionContract;
 
 /**
  * Created by Mateusz Grabarski on 22.09.2017.
@@ -19,7 +21,7 @@ public class PersistenceModule {
 
     @Provides
     @Singleton
-    private ProductListContract.Repository getProductRepository(Context context) {
+    public ProductListContract.Repository getProductRepository(Context context) {
         return new ProductInMemoryRepository();
     }
 
@@ -27,5 +29,11 @@ public class PersistenceModule {
     @Singleton
     public CustomerListContract.Repository getCustomerRepository(Context context) {
         return new CustomerInMemoryRepository();
+    }
+
+    @Provides
+    @Singleton
+    public TransactionContract.Repository getTransactionRepository(Context context) {
+        return new TempRepo();
     }
 }
