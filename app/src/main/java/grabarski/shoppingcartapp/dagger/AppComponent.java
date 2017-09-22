@@ -17,7 +17,8 @@ import grabarski.shoppingcartapp.ui.transaction.TransactionPresenter;
         modules = {
                 AppModule.class,
                 ShoppingCartModule.class,
-                BusModul.class
+                BusModul.class,
+                PersistenceModule.class
         }
 )
 public interface AppComponent {
