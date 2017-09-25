@@ -31,7 +31,7 @@ public class TransactionPresenter implements TransactionContract.Actions, OnData
 
     @Override
     public void loadTransactions() {
-        List<Transaction> transactions = mRepository.getAllTransactions();
+        List<Transaction> transactions = mRepository.getAllSalesTransactions();
         if (transactions != null && transactions.size() > 0) {
             mView.hideEmptyText();
             mView.showTransaction(transactions);

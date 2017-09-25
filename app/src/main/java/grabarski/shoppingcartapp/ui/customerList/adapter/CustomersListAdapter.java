@@ -98,7 +98,7 @@ public class CustomersListAdapter extends RecyclerView.Adapter<CustomersListAdap
 
         public void populate(Customer customer, int position) {
             Picasso.with(context)
-                    .load(customer.getProfileImagePath())
+                    .load(customer.getPhoneNumber())
                     .fit()
                     .into(avatarCiv);
 

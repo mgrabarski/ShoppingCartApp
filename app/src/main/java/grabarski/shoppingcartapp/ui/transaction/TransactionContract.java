@@ -4,6 +4,7 @@ import java.util.List;
 
 import grabarski.shoppingcartapp.data.database.OnDatabaseOperationCompleteListener;
 import grabarski.shoppingcartapp.data.model.Customer;
+import grabarski.shoppingcartapp.data.model.LineItem;
 import grabarski.shoppingcartapp.data.model.Transaction;
 
 /**
@@ -39,12 +40,11 @@ public class TransactionContract {
 
 
     public interface Repository {
-        List<Transaction> getAllTransactions();
-
+        List<LineItem> getAllLineItems();
+        long saveTransaction(Transaction transaction, OnDatabaseOperationCompleteListener listener);
+        List<Transaction> getAllSalesTransactions();
         void updateTransaction(Transaction transaction, OnDatabaseOperationCompleteListener listener);
-
         Transaction getTransactionById(long id);
-
         void deleteTransaction(long id, OnDatabaseOperationCompleteListener listener);
     }
 }

@@ -70,7 +70,7 @@ public class ShoppingCart implements ShoppingCardContract {
         refreshToolbar();
     }
 
-    private void saveCartToPreferences() {
+    public void saveCartToPreferences() {
         if (shoppingCart != null) {
             Gson gson = new Gson();
             String serializedItems = gson.toJson(shoppingCart);

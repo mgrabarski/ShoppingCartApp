@@ -8,6 +8,7 @@ import grabarski.shoppingcartapp.commons.ShoppingCart;
 import grabarski.shoppingcartapp.ui.customerList.CustomerPresenter;
 import grabarski.shoppingcartapp.ui.productList.ProductPresenter;
 import grabarski.shoppingcartapp.ui.transaction.TransactionPresenter;
+import grabarski.shoppingcartapp.ui.transaction.TransactionSQLiteManager;
 
 /**
  * Created by Mateusz Grabarski on 23/08/2017.
@@ -27,4 +28,5 @@ public interface AppComponent {
     void inject(ProductPresenter productPresenter);
     void inject(CustomerPresenter customerPresenter);
     void inject(TransactionPresenter transactionPresenter);
+    void inject(TransactionSQLiteManager transactionSQLiteManager);
 }

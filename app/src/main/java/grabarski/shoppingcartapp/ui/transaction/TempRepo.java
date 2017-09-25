@@ -3,6 +3,7 @@ package grabarski.shoppingcartapp.ui.transaction;
 import java.util.List;
 
 import grabarski.shoppingcartapp.data.database.OnDatabaseOperationCompleteListener;
+import grabarski.shoppingcartapp.data.model.LineItem;
 import grabarski.shoppingcartapp.data.model.Transaction;
 
 /**
@@ -15,7 +16,17 @@ public class TempRepo implements TransactionContract.Repository {
     }
 
     @Override
-    public List<Transaction> getAllTransactions() {
+    public List<LineItem> getAllLineItems() {
+        return null;
+    }
+
+    @Override
+    public long saveTransaction(Transaction transaction, OnDatabaseOperationCompleteListener listener) {
+        return 0;
+    }
+
+    @Override
+    public List<Transaction> getAllSalesTransactions() {
         return null;
     }
 
